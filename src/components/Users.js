@@ -3,26 +3,25 @@ import React from 'react'
 const Users = (props) => {
     return (
         <tbody>
-            {props.user.map((user) => {
-                <tr key={user.id.value}>
+            <tr >
                 <td> 
-                    <img src={user.image} alt="image of user" />
+                    <img src={props.userImage} alt="image of user" />
                 </td>
                 <td>
-                    {(`${user.name.first} ${user.name.last}`)}
+                    {props.userName}
                 </td>
                 <td>
-                    {user.email}
+                    {props.userEmail}
                 </td>
                 <td>
-                    {user.phone}
+                    {props.userPhone}
                 </td>
                 <td>
-                    {user.location.country}
+                    {props.userLocation}
                 </td>
 
                 </tr>
-            })}
+          
         </tbody>
     )
 }
