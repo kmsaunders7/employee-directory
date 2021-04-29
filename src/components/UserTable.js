@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import  Table  from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table'
 import API from '../utils/API'
-import Users from './Users'
+
 
 
 function UserTable() {
-    const [userState, setUserState] = useState([])
+    const [randomUsers, setRandomUsers] = useState([])
+    
+    
     useEffect(() => {
         userTable()
     }, [])
 
     const userTable = () => {
         API.getRandomUsers().then((results) => {
-            setUserState(results.data.results)
-          })
+            setRandomUsers(results.data.results)
+            console.log(setRandomUsers)
+        })
     }
 
 
@@ -22,23 +25,26 @@ function UserTable() {
         <Table>
             <thead>
                 <tr>
-                    <th>Picture:</th>
-                    <th>Name:</th>
-                    <th>Email:</th>
-                    <th>Phone:</th>
-                    <th>Location:</th>
+                    <th scope='col'>Picture:</th>
+                    <th scope='col'>Name:</th>
+                    <th scope='col'>Email:</th>
+                    <th scope='col'>Phone:</th>
+                    <th scope='col'>Location:</th>
                 </tr>
             </thead>
             <tbody>
-                {userState.map((user) => (
-                <Users 
-                userProfile= {user.image}
-                userName= {(`${user.name.first} ${user.name.last}`)}
-                userEmail= {user.email}
-                userPhone= {user.phone}
-                userLocation= {user.location.country}
-                 />
-                ))} 
+                {randomUsers.map((user) => (
+                    <tr key={user.id.value}>
+                        <td>
+                           <img src={user.picture.large}/>
+                        </td>
+                        <td>
+                        {(`${user.name.first} ${user.name.last}`)}</td>
+                        <td>{user.email}</td>
+                        <td>{user.phone}</td>
+                        <td>{user.location.country}</td>
+                    </tr>
+                ))}
             </tbody>
         </Table>
     )
