@@ -13,7 +13,7 @@
 
 ## Display
 
-![Image of Home Page](#) 
+![Image of Home Page](public/image/Capture.JPG) 
 
 ## Description
 
